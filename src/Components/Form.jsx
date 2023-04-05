@@ -16,7 +16,7 @@ const Form = () => {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
     let emailTest = emailRegex.test(user.email)
 
-    if(emailTest && user.nombre){
+    if(emailTest && user.nombre.length > 5){
       setMensaje(`Gracias ${user.nombre} , te contactaremos cuando antes vía mail`)
     }else{
       setMensaje(`Por favor verifique su información nuevamente`)
@@ -31,7 +31,7 @@ const Form = () => {
         <input type="email" onChange={(e) => setUser({...user, email: e.target.value})}/>
         <button>Enviar</button>
       </form>
-      <h1>{mensaje}</h1>
+      <h3>{mensaje}</h3>
     </div>
   );
 };
