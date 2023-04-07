@@ -7,12 +7,17 @@ import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
 import Home from "./Routes/Home";
 import {routes} from "./routes"
+import { useContextGlobal } from "./Components/utils/global.context";
 
 function App() {
 
+  const {themeState} = useContextGlobal();
+
+ 
+
   return (
 
-  <div className="App">
+  <div className={themeState.theme ? 'App' : 'App-dark'} style={{backgroundColor: themeState.bgColor, color: themeState.color,  a:themeState.color }}>
     <Navbar/>
     <Routes>
       <Route path={routes.home} element={<Home/>}/>

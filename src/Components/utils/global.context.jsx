@@ -1,25 +1,59 @@
 import React from "react";  
 import { createContext, useReducer, useContext } from "react";
-import { useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 
-export const initialState = {theme: "", data: []}
 
-export const ContextGlobal = createContext( );
+export const ContextGlobal = createContext();
+
+const themes = {
+  dark: {
+      theme: false,
+      bgColor: 'black',
+      color: 'white',
+      a: 'black'
+      
+  },
+  light: {
+      theme: true,
+      bgColor: 'white',
+      color: 'black',
+      a: 'white'
+  }
+}
+
+export const initialThemeState = themes.light
+
+const themeReducer = (state, action) => {
+  switch(action.type){
+      case 'SWITCH_DARK':
+          return themes.dark
+      case 'SWITCH_LIGHT':
+          return themes.light
+      default:
+          throw new Error
+  }
+}
+
+
 
 export const ContextProvider = ({ children }) => {
 
   const [favs, setFavs] = useState([])
   
-  const [state, dispach] = useReducer ([])
+  const [themeState, themeDispatch] = useReducer(themeReducer, initialThemeState)
+
+  const [dentis, setDentis] = useState([])
 
   const url = `https://jsonplaceholder.typicode.com/users`
 
-  const [dentis, setDentis] = useState([])
+
   
   useEffect(() =>{
     fetch(url)
     .then ((response) => response.json())
-    .then((data) => setDentis(data))
+    .then((data) => {
+      setDentis(data);
+    })
     
   },[])
   
@@ -27,7 +61,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <ContextGlobal.Provider 
     value={{
-      dentis,state,dispach,favs,setFavs
+      dentis, themeState ,themeDispatch, favs, setFavs
     }}>
       {children}
     </ContextGlobal.Provider>

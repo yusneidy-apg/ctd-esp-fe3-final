@@ -2,25 +2,21 @@ import React, { useContext } from "react";
 import { userEffect } from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../routes"
-import { ContextGlobal } from "./utils/global.context";
+import { useContextGlobal } from "./utils/global.context";
 
 
 const Card = ({ name, username, id }) => {
 
-  const {favs, setFavs} = ContextGlobal()
+  const {favs, setFavs} = useContextGlobal()
 
- userEffect (()=>{
-   localStorage.setItem('favs', JSON.stringify(favs))
-  },[])
 
-  const addFav = ({ id, name, username})=>{
-   setFavs([...favs, {id, name, username}])    
+  const addFav = ({ id, name, username})=>{ 
     // Aqui iria la logica para agregar la Card en el localStorage
   }
 
   return (
     <div className="card">
-      <img src = "./images/doctor.jpg" alt = "dentista"/>
+      <img src = "./images/doctor.jpg" alt = "dentista" width={200}/>
       <h3>{id}</h3>
       <h3>{name}</h3>
       <h3>{username}</h3>
