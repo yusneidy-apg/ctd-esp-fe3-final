@@ -19,10 +19,11 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='navbar'>
-      {<Link to={routes.home}>Home</Link>}
-      {<Link to={routes.contact}>Contact</Link>}
-      {<Link to={routes.favs}>Favorites</Link>}
+    <nav>
+      <h1>DH Odonto</h1>
+      {<Link to={routes.home}style= {{color: themeState.acolor}}>  Home</Link>}
+      {<Link to={routes.contact} style= {{color: themeState.acolor}}>Contact</Link>}
+      {<Link to={routes.favs} style= {{color: themeState.acolor}}>Favorites</Link>}
 
          {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
          {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}

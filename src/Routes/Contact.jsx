@@ -10,11 +10,10 @@ const Contact = () => {
   
   return (
     <>
-      <h2>CONTACT Want to know more?</h2>
+      <h3>Want to know more?</h3>
       <p>Send us your questions and we will contact you</p>
       <Form/>
-      <Footer/>
-    </>
+      </>
   )
 }
 

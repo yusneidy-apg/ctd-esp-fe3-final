@@ -14,9 +14,9 @@ const Home = () => {
 
   return (
     <main className="" >
-      <h1>Home</h1>
+      <h2>Home</h2>
       <div className='card-grid'>
-        {dentis.map((item) => <Card key = {item.id} name={item.name} username={item.username}/>)}
+        {dentis.map((item) => <Card key = {item.id} name={item.name} username={item.username} id={item.id}/>)}
         {/* Aqui deberias renderizar las cards */}
       </div>
     </main>

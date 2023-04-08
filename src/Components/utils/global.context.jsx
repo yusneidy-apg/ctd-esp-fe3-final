@@ -10,18 +10,19 @@ const themes = {
       theme: false,
       bgColor: 'black',
       color: 'white',
-      a: 'black'
+      acolor: 'white'
       
   },
   light: {
       theme: true,
       bgColor: 'white',
       color: 'black',
-      a: 'white'
+      acolor: 'black'
   }
 }
 
 export const initialThemeState = themes.light
+const initialFavState = JSON.parse(localStorage.getItem('favs')) || []
 
 const themeReducer = (state, action) => {
   switch(action.type){
@@ -34,17 +35,29 @@ const themeReducer = (state, action) => {
   }
 }
 
+const favReducer = (state, action) => {
+  switch(action.type){
+      case 'ADD_FAV': 
+          return [...state, action.payload]
+      default: 
+          throw new Error
+  }
+}
 
 
 export const ContextProvider = ({ children }) => {
 
   const [favs, setFavs] = useState([])
-  
+  const [favState, favDispatch] = useReducer(favReducer, initialFavState)
   const [themeState, themeDispatch] = useReducer(themeReducer, initialThemeState)
 
   const [dentis, setDentis] = useState([])
 
   const url = `https://jsonplaceholder.typicode.com/users`
+
+  useEffect(() => {
+    localStorage.setItem('favs', JSON.stringify(favState))
+}, [favState])
 
 
   
@@ -61,7 +74,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <ContextGlobal.Provider 
     value={{
-      dentis, themeState ,themeDispatch, favs, setFavs
+      dentis, themeState ,themeDispatch, favs, setFavs, favState, favDispatch
     }}>
       {children}
     </ContextGlobal.Provider>
