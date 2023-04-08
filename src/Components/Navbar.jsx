@@ -20,14 +20,16 @@ const Navbar = () => {
 
   return (
     <nav>
-      <h1>DH Odonto</h1>
+      <div className='odonto'>
+      <h2 className="letra-d">D</h2>
+      <h2 className="letra-h">H</h2>
+      <h2>Odonto</h2>
+      </div>
+      <div className="links-nav">
       {<Link to={routes.home}style= {{color: themeState.acolor}}>  Home</Link>}
       {<Link to={routes.contact} style= {{color: themeState.acolor}}>Contact</Link>}
       {<Link to={routes.favs} style= {{color: themeState.acolor}}>Favorites</Link>}
-
-         {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-         {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-    <button onClick={switchTheme}>{themeState.theme ? '🌒' : '🌞'}</button>
+      <button onClick={switchTheme}>{themeState.theme ? "🌙" : "☀️"}</button></div>
     </nav>
   )
 }

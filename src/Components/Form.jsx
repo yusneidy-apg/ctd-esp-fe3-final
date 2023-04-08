@@ -24,8 +24,11 @@ const Form = () => {
   }
   return (
     <div>
+
       <form onSubmit = {handleSubmit}>
+
       <label>Nombre</label>
+
       <input type="text" onChange={(e) => setUser({...user, nombre: e.target.value})}/>
         <label>Email</label>
         <input type="email" onChange={(e) => setUser({...user, email: e.target.value})}/>

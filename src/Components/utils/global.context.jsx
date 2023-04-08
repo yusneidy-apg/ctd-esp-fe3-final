@@ -50,7 +50,6 @@ export const ContextProvider = ({ children }) => {
   const [favs, setFavs] = useState([])
   const [favState, favDispatch] = useReducer(favReducer, initialFavState)
   const [themeState, themeDispatch] = useReducer(themeReducer, initialThemeState)
-
   const [dentis, setDentis] = useState([])
 
   const url = `https://jsonplaceholder.typicode.com/users`
@@ -70,7 +69,6 @@ export const ContextProvider = ({ children }) => {
     
   },[])
   
-  //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
   return (
     <ContextGlobal.Provider 
     value={{
